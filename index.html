@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Md. Shawon Masud — Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #38bdf8;
+      --blue-mid:    #0ea5e9;
+      --blue-dark:   #0284c7;
+      --blue-dim:    rgba(56,189,248,0.1);
+      --blue-glow:   rgba(56,189,248,0.3);
+      --black:       #07090f;
+      --black2:      #0d1117;
+      --black3:      #131922;
+      --white:       #ffffff;
+      --off-white:   #dde8f0;
+      --muted:       #6a7a90;
+      --border:      rgba(56,189,248,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+    /* subtle grid */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+      background-size: 70px 70px; pointer-events: none;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5%;
+      background: rgba(7,9,15,0.92); backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
+      letter-spacing: 0.1em; color: var(--blue); text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.7rem;
+      font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+
+    /* hamburger for mobile */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--blue); transition: all 0.3s; }
+    .nav-mobile { display: none; }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-mobile {
+        position: fixed; top: 54px; left: 0; right: 0; z-index: 199;
+        background: rgba(7,9,15,0.98); backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column; padding: 1.5rem 5%;
+        gap: 1.4rem;
+      }
+      .nav-mobile.open { display: flex; }
+      .nav-mobile a {
+        color: var(--off-white); text-decoration: none; font-size: 0.85rem;
+        font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+        padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+      }
+      .nav-mobile a:last-child { border-bottom: none; }
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; z-index: 1; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 9rem 5% 5rem;
+    }
+
+    /* decorative corner lines */
+    #hero::after {
+      content: ''; position: absolute;
+      bottom: 4rem; right: 5%;
+      width: 120px; height: 120px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid var(--blue-dim);
+      background: var(--blue-dim);
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue);
+      margin-bottom: 2rem; width: fit-content;
+      opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .dot-pulse { width: 7px; height: 7px; background: var(--blue); border-radius: 50%; animation: pulse 1.8s infinite; flex-shrink: 0; }
+
+    .hero-title {
+      margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp 0.6s 0.3s forwards;
+    }
+    .hero-title .line1 {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.8rem, 10vw, 9rem);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
+    .hero-title .line2 {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.8rem, 10vw, 9rem);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: var(--blue);
+    }
+
+    .hero-role {
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 1.6rem;
+      opacity: 0; animation: fadeUp 0.6s 0.45s forwards;
+    }
+    .hero-role span { color: var(--blue); }
+
+    .hero-summary {
+      max-width: 580px; font-size: 0.97rem; color: var(--off-white);
+      line-height: 1.85; margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.6s 0.55s forwards;
+    }
+
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem;
+      margin-bottom: 2.8rem;
+      opacity: 0; animation: fadeUp 0.6s 0.65s forwards;
+    }
+    .meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted); }
+    .meta-item .mi { font-size: 0.9rem; }
+
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.6s 0.75s forwards;
+    }
+    .btn {
+      padding: 0.85rem 2rem; font-family: 'Inter', sans-serif;
+      font-size: 0.73rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none; cursor: pointer;
+      border: none; transition: all 0.25s; display: inline-block;
+    }
+    .btn-primary { background: var(--blue); color: var(--black); }
+    .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); box-shadow: 0 10px 28px var(--blue-glow); }
+    .btn-ghost { background: transparent; color: var(--off-white); border: 1px solid rgba(255,255,255,0.15); }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+    .hero-scroll-hint {
+      position: absolute; bottom: 2.2rem; left: 5%;
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+      opacity: 0; animation: fadeUp 0.6s 1s forwards;
+    }
+    .scroll-bar { width: 36px; height: 1px; background: linear-gradient(to right, var(--blue), transparent); }
+
+    /* ── SHARED SECTION ── */
+    .sec { position: relative; z-index: 1; padding: 7rem 5%; }
+    .sec-inner { max-width: 1160px; margin: 0 auto; }
+    .sec-num {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem;
+    }
+    .sec-num::before { content: ''; width: 28px; height: 1px; background: var(--blue); }
+    .sec-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      line-height: 1; letter-spacing: 0.05em;
+      color: var(--white); margin-bottom: 4rem;
+    }
+    .sec-heading .a { color: var(--blue); }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 5rem; align-items: start; }
+    .about-body p { font-size: 0.95rem; color: var(--off-white); line-height: 1.88; margin-bottom: 1.2rem; }
+
+    .edu-box {
+      margin-top: 2.2rem; background: var(--black3);
+      border: 1px solid var(--border); border-left: 3px solid var(--blue);
+      padding: 1.6rem 1.8rem;
+    }
+    .edu-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+    .edu-box h3 { font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+    .edu-box p { font-size: 0.8rem; color: var(--muted); margin: 0; }
+
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-box {
+      background: var(--black3); border: 1px solid var(--border);
+      padding: 1.8rem 1.4rem; position: relative; overflow: hidden;
+      transition: border-color 0.22s, transform 0.22s;
+    }
+    .stat-box:hover { border-color: var(--blue); transform: translateY(-3px); }
+    .stat-box::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--blue), transparent); }
+    .stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--blue); line-height: 1; margin-bottom: 0.35rem; }
+    .stat-l { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+
+    /* ── EXPERIENCE ── */
+    .exp-stack { display: flex; flex-direction: column; gap: 1.2rem; }
+    .exp-item {
+      background: var(--black2); border: 1px solid var(--border);
+      padding: 2rem 2.2rem; display: grid;
+      grid-template-columns: 180px 1fr; gap: 2rem;
+      transition: border-color 0.22s, transform 0.22s;
+    }
+    .exp-item:hover { border-color: var(--blue); transform: translateX(5px); }
+    .exp-left {}
+    .exp-org { font-size: 0.7rem; font-weight: 600; color: var(--blue); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .exp-when { font-size: 0.68rem; color: var(--muted); line-height: 1.5; }
+    .exp-badge {
+      display: inline-block; margin-top: 0.7rem;
+      padding: 0.18rem 0.6rem; font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--blue-dim); color: var(--blue); border: 1px solid var(--border);
+    }
+    .exp-right h3 { font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: 0.9rem; }
+    .exp-pts { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .exp-pts li { font-size: 0.84rem; color: var(--off-white); line-height: 1.65; padding-left: 1.1rem; position: relative; }
+    .exp-pts li::before { content: '▸'; position: absolute; left: 0; top: 0.12rem; color: var(--blue); font-size: 0.62rem; }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .sk-card {
+      background: var(--black2); border: 1px solid var(--border);
+      padding: 1.8rem; transition: all 0.22s; position: relative; overflow: hidden;
+    }
+    .sk-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .sk-card:hover::before { transform: scaleX(1); }
+    .sk-card:hover { border-color: rgba(56,189,248,0.4); transform: translateY(-4px); }
+    .sk-card h3 { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tag {
+      padding: 0.28rem 0.7rem; font-size: 0.71rem;
+      border: 1px solid var(--border); color: var(--off-white);
+      background: var(--black3); transition: all 0.18s;
+    }
+    .tag:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+
+    /* ── ACHIEVEMENTS ── */
+    .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .ach-item {
+      background: var(--black2); border: 1px solid var(--border);
+      padding: 2rem; display: flex; gap: 1.4rem; align-items: flex-start;
+      transition: all 0.22s; position: relative; overflow: hidden;
+    }
+    .ach-item::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--blue); transition: width 0.4s; }
+    .ach-item:hover::after { width: 100%; }
+    .ach-item:hover { border-color: rgba(56,189,248,0.4); transform: translateY(-3px); }
+    .ach-ico { width: 46px; height: 46px; background: var(--blue-dim); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+    .ach-item h3 { font-size: 0.97rem; font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+    .ach-item p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── TIMELINE ── */
+    .tl { position: relative; padding-left: 2.8rem; }
+    .tl::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 2rem; width: 1px; background: linear-gradient(to bottom, var(--blue) 0%, transparent 100%); }
+    .tl-row { position: relative; padding-bottom: 3.2rem; opacity: 0; transform: translateX(-16px); transition: opacity 0.5s, transform 0.5s; }
+    .tl-row.visible { opacity: 1; transform: translateX(0); }
+    .tl-diamond { position: absolute; left: -2.8rem; top: 0.3rem; width: 11px; height: 11px; background: var(--blue); clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%); }
+    .tl-when { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.45rem; }
+    .tl-row h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; letter-spacing: 0.05em; color: var(--white); margin-bottom: 0.2rem; line-height: 1; }
+    .tl-sub { font-size: 0.75rem; color: var(--muted); font-weight: 500; margin-bottom: 0.6rem; }
+    .tl-row p { font-size: 0.84rem; color: var(--off-white); max-width: 600px; line-height: 1.72; }
+
+    /* ── CONTACT ── */
+    #contact-sec {
+      background: linear-gradient(135deg, #061220 0%, #050d1a 60%, #070f1c 100%);
+      border-top: 1px solid var(--border);
+    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
+    .contact-intro p { font-size: 0.97rem; color: var(--off-white); line-height: 1.85; max-width: 400px; }
+    .contact-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .c-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.4rem; background: rgba(56,189,248,0.04);
+      color: var(--off-white); text-decoration: none; font-size: 0.82rem;
+      font-weight: 500; letter-spacing: 0.05em;
+      border: 1px solid var(--border); transition: all 0.22s;
+    }
+    .c-link:hover { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); transform: translateX(5px); }
+    .c-arrow { margin-left: auto; opacity: 0.4; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); text-align: center; padding: 1.8rem 5%;
+      font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em;
+      border-top: 1px solid var(--border); position: relative; z-index: 1;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s, transform 0.55s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .ach-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.3rem; }
+    }
+    @media (max-width: 600px) {
+      .sec { padding: 5rem 5%; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-title .line1, .hero-title .line2 { font-size: clamp(3.2rem, 14vw, 5rem); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">SM</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#timeline">Journey</a></li>
+    <li><a href="#contact-sec">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="mobileMenu">
+  <a href="#about" onclick="this.parentElement.classList.remove('open')">About</a>
+  <a href="#experience" onclick="this.parentElement.classList.remove('open')">Experience</a>
+  <a href="#skills" onclick="this.parentElement.classList.remove('open')">Skills</a>
+  <a href="#achievements" onclick="this.parentElement.classList.remove('open')">Awards</a>
+  <a href="#timeline" onclick="this.parentElement.classList.remove('open')">Journey</a>
+  <a href="#contact-sec" onclick="this.parentElement.classList.remove('open')">Contact</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-eyebrow"><span class="dot-pulse"></span> Open to Opportunities</div>
+
+  <div class="hero-title">
+    <span class="line1">MD. SHAWON</span>
+    <span class="line2">MASUD</span>
+  </div>
+
+  <p class="hero-role">Marketing Undergraduate &nbsp;<span>·</span>&nbsp; University of Dhaka</p>
+
+  <p class="hero-summary">
+    Hands-on experience in campaign execution, content creation, PR coordination, brand activations, and market research — through leadership roles and real corporate exposure.
+  </p>
+
+  <div class="hero-meta">
+    <div class="meta-item"><span class="mi">📍</span> Dhaka, Bangladesh</div>
+    <div class="meta-item"><span class="mi">🎓</span> BBA Marketing · DU 2023–2027</div>
+    <div class="meta-item"><span class="mi">📧</span> smshawon464@gmail.com</div>
+    <div class="meta-item"><span class="mi">📞</span> +8801798004300</div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#experience" class="btn btn-primary">View Experience</a>
+    <a href="#contact-sec" class="btn btn-ghost">Get in Touch</a>
+  </div>
+
+  <div class="hero-scroll-hint"><div class="scroll-bar"></div> Scroll</div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<div id="about" class="sec" style="background:var(--black2);border-top:1px solid var(--border);">
+  <div class="sec-inner">
+    <p class="sec-num reveal">01 — About</p>
+    <h2 class="sec-heading reveal">WHO I <span class="a">AM</span></h2>
+    <div class="about-grid">
+      <div>
+        <div class="about-body reveal">
+          <p>I'm Shawon — a marketing undergraduate at the University of Dhaka who lives at the intersection of strategy and execution. From planning national business competitions to coordinating PR with The Daily Star, I bring both analytical thinking and creative energy to everything I do.</p>
+          <p>My work spans digital campaigns, event logistics, brand activations, content writing, and corporate sales — giving me a 360° view of how marketing and management actually work on the ground.</p>
+        </div>
+        <div class="edu-box reveal">
+          <div class="edu-tag">Education</div>
+          <h3>University of Dhaka</h3>
+          <p>Bachelor of Business Administration · Marketing<br/>2023 – 2027 (Expected) &nbsp;·&nbsp; Junior Year</p>
+        </div>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-box"><div class="stat-n">5+</div><div class="stat-l">Roles & Organizations</div></div>
+        <div class="stat-box"><div class="stat-n">4</div><div class="stat-l">Awards & Recognition</div></div>
+        <div class="stat-box"><div class="stat-n">2+</div><div class="stat-l">Years Active Experience</div></div>
+        <div class="stat-box"><div class="stat-n">8+</div><div class="stat-l">Campaigns & Events</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<div id="experience" class="sec" style="background:var(--black);border-top:1px solid var(--border);">
+  <div class="sec-inner">
+    <p class="sec-num reveal">02 — Experience</p>
+    <h2 class="sec-heading reveal">WHAT I'VE <span class="a">DONE</span></h2>
+    <div class="exp-stack">
+
+      <div class="exp-item reveal">
+        <div class="exp-left"><div class="exp-org">Cartup / US-Bangla</div><div class="exp-when">Nov 2025 – Present</div><div class="exp-badge">Campus Ambassador</div></div>
+        <div class="exp-right">
+          <h3>Campus Ambassador</h3>
+          <ul class="exp-pts">
+            <li>Collaborate with Marketing & Content teams to plan and execute digital promotional campaigns.</li>
+            <li>Lead campus-level brand visibility initiatives with consistent messaging across online and offline platforms.</li>
+            <li>Execute social media activations and targeted communications for online promotional campaigns.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-left"><div class="exp-org">Hult Prize at DU</div><div class="exp-when">Nov 2025 – Jan 2026</div><div class="exp-badge">Coordinator</div></div>
+        <div class="exp-right">
+          <h3>Coordinator — Event Management & Logistics</h3>
+          <ul class="exp-pts">
+            <li>Coordinated planning and execution of large-scale campus marketing campaigns and promotional activities.</li>
+            <li>Led event timelines, logistics operations, vendor coordination, and on-ground activation.</li>
+            <li>Worked closely with Communication, Synergy, and Finance teams for consistent cross-platform messaging.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-left"><div class="exp-org">Voice of Business</div><div class="exp-when">Jan 2025 – Present</div><div class="exp-badge">Sr. Associate</div></div>
+        <div class="exp-right">
+          <h3>Senior Associate — HR & Finance</h3>
+          <ul class="exp-pts">
+            <li>Assisted in event branding, sponsorship coordination, and promotional activations for Brandrill 5.0, a National Business Case Competition.</li>
+            <li>Key role in launching Academic BootCamp '24, Talks Beyond Textbooks '26, and the FutureMakers roadshow (Grameenphone).</li>
+            <li>Maintained event trackers, budgets, timelines, and documentation for smooth execution.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-left"><div class="exp-org">DUMARC</div><div class="exp-when">Dec 2023 – Present</div><div class="exp-badge">Head — Content</div></div>
+        <div class="exp-right">
+          <h3>Head — Content & Research</h3>
+          <ul class="exp-pts">
+            <li>Planned & executed digital and offline marketing campaigns for Nestlé KitKat Skill Factory S7 and Skin Cafe Skill Factory S8.</li>
+            <li>Supported PR through press release writing and media coordination with The Daily Star.</li>
+            <li>Launched Academic BootCamp '24, Talks Beyond Textbooks '26, and FutureMakers roadshow (Grameenphone).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-left"><div class="exp-org">Klozer.io</div><div class="exp-when">Sept – Nov 2024</div><div class="exp-badge">Part-Time</div></div>
+        <div class="exp-right">
+          <h3>Global Sales Executive (Part-Time)</h3>
+          <ul class="exp-pts">
+            <li>Supported sales and marketing outreach campaigns by coordinating client communications and follow-ups.</li>
+            <li>Assisted in preparing pitch materials, presentations, and campaign collateral aligned with brand messaging.</li>
+            <li>Conducted market and prospect research to identify leads and support targeting strategies.</li>
+            <li>Maintained CRM records, trackers, and documentation to support campaign execution and reporting.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SKILLS ═══ -->
+<div id="skills" class="sec" style="background:var(--black2);border-top:1px solid var(--border);">
+  <div class="sec-inner">
+    <p class="sec-num reveal">03 — Skills</p>
+    <h2 class="sec-heading reveal">WHAT I <span class="a">BRING</span></h2>
+    <div class="skills-grid">
+      <div class="sk-card reveal"><h3>Marketing</h3><div class="tags"><span class="tag">Brand Promotion</span><span class="tag">Social Media Marketing</span><span class="tag">Campaign Execution</span><span class="tag">Market Research</span></div></div>
+      <div class="sk-card reveal"><h3>Content & PR</h3><div class="tags"><span class="tag">Content Writing</span><span class="tag">Press Release Writing</span><span class="tag">PR Coordination</span><span class="tag">Media Liaison</span></div></div>
+      <div class="sk-card reveal"><h3>Events & Ops</h3><div class="tags"><span class="tag">Event Management</span><span class="tag">Logistics</span><span class="tag">Vendor Coordination</span><span class="tag">Budget Tracking</span></div></div>
+      <div class="sk-card reveal"><h3>Sales & Research</h3><div class="tags"><span class="tag">Prospect Research</span><span class="tag">CRM Management</span><span class="tag">Client Communication</span><span class="tag">Lead Generation</span></div></div>
+      <div class="sk-card reveal"><h3>Tools</h3><div class="tags"><span class="tag">Microsoft Office</span><span class="tag">Canva</span><span class="tag">CapCut</span><span class="tag">Google Workspace</span></div></div>
+      <div class="sk-card reveal"><h3>Soft Skills</h3><div class="tags"><span class="tag">Cross-team Collaboration</span><span class="tag">Leadership</span><span class="tag">Adaptability</span><span class="tag">Documentation</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ACHIEVEMENTS ═══ -->
+<div id="achievements" class="sec" style="background:var(--black);border-top:1px solid var(--border);">
+  <div class="sec-inner">
+    <p class="sec-num reveal">04 — Recognition</p>
+    <h2 class="sec-heading reveal">HONORS & <span class="a">AWARDS</span></h2>
+    <div class="ach-grid">
+      <div class="ach-item reveal"><div class="ach-ico">🥉</div><div><h3>Bronze Award</h3><p>Queen Commonwealth Essay Competition — Recognized internationally for outstanding essay writing.</p></div></div>
+      <div class="ach-item reveal"><div class="ach-ico">🏆</div><div><h3>Winner — mArC the StarBiz</h3><p>Dhaka University Marketing Club (DUMARC) — Won the flagship marketing competition.</p></div></div>
+      <div class="ach-item reveal"><div class="ach-ico">⭐</div><div><h3>Best Performer — Q1 & Q2, 2024</h3><p>DUMARC — Recognized as top performer across two consecutive quarters in 2024.</p></div></div>
+      <div class="ach-item reveal"><div class="ach-ico">🎪</div><div><h3>Organizer of MarcVenture</h3><p>Department of Marketing, University of Dhaka — Organized one of the department's signature events.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TIMELINE ═══ -->
+<div id="timeline" class="sec" style="background:var(--black2);border-top:1px solid var(--border);">
+  <div class="sec-inner">
+    <p class="sec-num reveal">05 — Journey</p>
+    <h2 class="sec-heading reveal">MY <span class="a">STORY</span></h2>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-diamond"></div><div class="tl-when">Nov 2025 – Present</div><h3>Campus Ambassador</h3><div class="tl-sub">Cartup — A concern of US-Bangla</div><p>Driving campus-level brand visibility and digital campaigns across the University of Dhaka.</p></div>
+      <div class="tl-row"><div class="tl-diamond"></div><div class="tl-when">Nov 2025 – Jan 2026</div><h3>Hult Prize Coordinator</h3><div class="tl-sub">Hult Prize at University of Dhaka — Event Management & Logistics</div><p>Led logistics, vendor coordination, and on-ground activation for the DU chapter of the world's largest student competition.</p></div>
+      <div class="tl-row"><div class="tl-diamond"></div><div class="tl-when">Jan 2025 – Present</div><h3>Senior Associate — HR & Finance</h3><div class="tl-sub">Voice of Business</div><p>Contributed to Brandrill 5.0, Academic BootCamp '24, Talks Beyond Textbooks '26, and the FutureMakers roadshow with Grameenphone.</p></div>
+      <div class="tl-row"><div class="tl-diamond"></div><div class="tl-when">Sept – Nov 2024</div><h3>Global Sales Executive</h3><div class="tl-sub">Klozer.io (Part-Time)</div><p>First corporate role — handled client outreach, pitch preparation, CRM documentation, and prospect research in a fast-paced sales environment.</p></div>
+      <div class="tl-row"><div class="tl-diamond"></div><div class="tl-when">Dec 2023 – Present</div><h3>Head — Content & Research</h3><div class="tl-sub">Dhaka University Marketing Club (DUMARC)</div><p>Led content strategy and PR for branded campaigns including Nestlé KitKat Skill Factory S7 & S8, and FutureMakers (Grameenphone).</p></div>
+      <div class="tl-row"><div class="tl-diamond"></div><div class="tl-when">2023</div><h3>Joined University of Dhaka</h3><div class="tl-sub">BBA in Marketing — The Beginning</div><p>Started the journey at one of South Asia's most prestigious universities, immediately diving into clubs, competitions, and real-world marketing work.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div id="contact-sec" class="sec" style="background:var(--black);border-top:1px solid var(--border);">
+  <div class="sec-inner">
+    <p class="sec-num reveal">06 — Contact</p>
+    <h2 class="sec-heading reveal">LET'S <span class="a">TALK</span></h2>
+    <div class="contact-grid">
+      <div class="contact-intro reveal">
+        <p>Open to internships, collaborations, campus partnerships, and creative opportunities. Whether it's a campaign, an event, or just a conversation — reach out.</p>
+      </div>
+      <div class="contact-list reveal">
+        <a href="mailto:smshawon464@gmail.com" class="c-link">✉&nbsp; smshawon464@gmail.com <span class="c-arrow">→</span></a>
+        <a href="tel:+8801798004300" class="c-link">📞&nbsp; +8801798004300 <span class="c-arrow">→</span></a>
+        <a href="https://www.linkedin.com/in/md-shawon-masud?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="c-link">in&nbsp; Md. Shawon Masud — LinkedIn <span class="c-arrow">→</span></a>
+        <a href="https://github.com/yourusername" target="_blank" class="c-link">⌥&nbsp; GitHub <span class="c-arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Md. Shawon Masud &nbsp;·&nbsp; University of Dhaka &nbsp;·&nbsp; Shahid Osman Hadi Hall</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal, .tl-row');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 65);
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -20px 0px' });
+  els.forEach(el => io.observe(el));
+
+  // Nav active
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    document.querySelectorAll('[id]').forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${cur}`));
+  });
+</script>
+</body>
+</html>
